@@ -1,12 +1,17 @@
 {
-  "name": "node-module-boilerplate",
+  "name": "node-boilerplate-cli",
   "version": "0.0.0-development",
-  "description": "My template for node modules with lint, tests, code coverage, type checking, CI, semantic release and interoperability between ES6 modules and CommonJs.",
+  "description": "An CLI to generate modern boilerplate skeleton for node and browser modules.",
   "main": "./lib/index.js",
-  "repository": "git@github.com:MauroJr/node-module-boilerplate.git",
+  "repository": "git@github.com:MauroJr/node-boilerplate-cli.git",
   "author": "Mauro Junior <mauropereirajr@gmail.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "clui": "^0.3.1",
+    "commander": "^2.9.0",
+    "inquirer": "^3.0.6"
+  },
   "keywords": [
     "modern",
     "node",
