@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import figlet from 'figlet';
 import clear from 'clear';
 import inquirer from 'inquirer';
+import Spinner from './console/spinner';
 
 import files from './files';
 
@@ -11,40 +12,64 @@ const banner = chalk.green(figlet.textSync('node-boilerplate', { font: 'Bubble' 
 clear();
 print(`\n${banner}\n`);
 
-if (files.directoryExists('.git')) {
-  print(chalk.red('Already a git repository!'));
-  process.exit();
-}
-
-function getGithubCredentials(callback) {
+function getAnswers(done) {
   const questions = [
     {
-      name: 'username',
+      name: 'name',
       type: 'input',
-      message: 'Enter your Github username or e-mail address:',
+      message: 'Enter the `name` of your new module:\n',
       validate(value) {
-        if (value.length) {
-          return true;
+        if (!value.length) {
+          return 'Enter the `name` of your new module!';
         }
-        return 'Please enter your username or e-mail address';
+        if (files.directoryExists(value)) {
+          return chalk.red(`Already exists a directory ${chalk.blue(`"${value}"`)
+            } in your current folder ${chalk.blue(`"${files.getCurrentDirectoryBase()}"`)}.`);
+        }
+
+        return true;
       }
     },
     {
-      name: 'password',
-      type: 'password',
-      message: 'Enter your password:',
-      validate(value) {
-        if (value.length) {
-          return true;
-        }
-        return 'Please enter your password';
+      type: 'list',
+      name: 'type',
+      message: 'What type of module you will build?\n',
+      choices: ['Node', 'Node and Browser'],
+      filter(val) {
+        return val.toLowerCase();
+      }
+    },
+    {
+      type: 'input',
+      name: 'type',
+      message: 'Choose a number?\n',
+      validate(input) {
+        const spinner = Spinner();
+
+        spinner.setText('checking the name...');
+        spinner.start();
+
+        // Declare function as asynchronous, and save the done callback
+        const done = this.async();
+
+        // Do async stuff
+        setTimeout(() => {
+          spinner.stop();
+          if (typeof input !== 'number') {
+            // Pass the return value in the done callback
+            done('You need to provide a number');
+            return;
+          }
+          // Pass the return value in the done callback
+          done(null, true);
+        }, 3000);
       }
     }
   ];
 
-  inquirer.prompt(questions).then(callback);
+  inquirer.prompt(questions).then(done);
 }
 
-getGithubCredentials((...args) => {
-  print(args);
+getAnswers(({ name, type }) => {
+  print(`${chalk.blue(name)} - ${chalk.yellow(type)}`);
 });
