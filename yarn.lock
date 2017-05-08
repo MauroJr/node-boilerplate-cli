@@ -2658,6 +2658,10 @@ next-tick@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-0.2.2.tgz#75da4a927ee5887e39065880065b7336413b310d"
 
+node-module-boilerplate@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/node-module-boilerplate/-/node-module-boilerplate-0.8.0.tgz#cb1ad63ae3e78b0fa06e44891f43f4a63ebd17f5"
+
 node-pre-gyp@^0.6.29:
   version "0.6.34"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.6.34.tgz#94ad1c798a11d7fc67381b50d47f8cc18d9799f7"
