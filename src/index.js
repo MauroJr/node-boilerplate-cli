@@ -9,7 +9,8 @@ import {
   getNewModuleBasePath,
   directoryExists,
   copyModule,
-  editPackageJson
+  editPackageJson,
+  createReadme
 } from './files';
 
 const print = data => console.log(data); // eslint-disable-line
@@ -100,11 +101,15 @@ getAnswers((answers) => {
       author: answers.author,
       license: answers.license,
       keywords: []
-    }, next(() => {
-      spinner.stop();
-      print(chalk.green(`Files created in ${chalk.blue(`./${name}`)} directory.`));
-      print(chalk.green(`Type: cd ${name} && npm run setup`));
-      process.exit();
+    },
+    next(() => {
+      createReadme(packagePath, answers,
+      next(() => {
+        spinner.stop();
+        print(chalk.green(`Files created in ${chalk.blue(`./${name}`)} directory.`));
+        print(chalk.green(`Type: cd ${name} && npm run setup`));
+        process.exit();
+      }));
     }));
   }));
 });
