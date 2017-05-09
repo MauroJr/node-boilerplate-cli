@@ -1,20 +1,17 @@
 import * as fs from 'fs';
-import copydir from 'copy-dir';
 import * as path from 'path';
 
-
-export default Object.freeze({
-  getCurrentDirectoryBase,
-
-  copyModule,
-
-  directoryExists
-});
+import copydir from 'copy-dir';
+import jsonfile from 'jsonfile';
 
 
-export function copyModule(moduleName, toFolder, done) {
-  const fromPath = path.resolve(__dirname, '../node_modules/', moduleName);
-  const toPath = path.resolve(process.cwd(), toFolder);
+export function copyModule(opt = {}, done) {
+  const moduleTypes = {
+    node: 'node-module-boilerplate',
+    'node and browser': 'node-bprwser-module-boilerplate'
+  };
+  const fromPath = path.resolve(__dirname, '../node_modules/', moduleTypes[opt.type]);
+  const toPath = path.resolve(process.cwd(), opt.name);
 
   copydir(fromPath, toPath, (stat, filePath, fileName) => {
     if (stat === 'file' && fileName === 'README.md') {
@@ -25,8 +22,27 @@ export function copyModule(moduleName, toFolder, done) {
   }, done);
 }
 
+export function editPackageJson(pathDir, fields, done) {
+  const jsonPath = path.resolve(pathDir, 'package.json');
 
-export function getCurrentDirectoryBase() {
+  jsonfile.readFile(jsonPath, (err, pck) => {
+    if (err) {
+      return done(err);
+    }
+
+    const newPackage = Object.assign({}, pck, fields);
+
+    jsonfile.writeFile(jsonPath, newPackage, { spaces: 2 }, done);
+  });
+}
+
+
+export function getNewModuleBasePath(name) {
+  return path.resolve(process.cwd(), name);
+}
+
+
+export function getCurrentDirBaseName() {
   return path.basename(process.cwd());
 }
 

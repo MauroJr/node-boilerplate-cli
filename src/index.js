@@ -5,9 +5,11 @@ import inquirer from 'inquirer';
 import Spinner from './console/spinner';
 
 import {
-  getCurrentDirectoryBase,
+  getCurrentDirBaseName,
+  getNewModuleBasePath,
   directoryExists,
-  copyModule
+  copyModule,
+  editPackageJson
 } from './files';
 
 const print = data => console.log(data); // eslint-disable-line
@@ -30,7 +32,7 @@ function getAnswers(done) {
         }
         if (directoryExists(value)) {
           return chalk.red(`Already exists a directory ${chalk.blue(`"${value}"`)
-            } in your current folder ${chalk.blue(`"${getCurrentDirectoryBase()}"`)}.`);
+            } in your current folder ${chalk.blue(`"${getCurrentDirBaseName()}"`)}.`);
         }
 
         return true;
@@ -44,50 +46,77 @@ function getAnswers(done) {
       filter(val) {
         return val.toLowerCase();
       }
+    },
+    {
+      name: 'version',
+      type: 'input',
+      message: 'Initial version:\n',
+      default() {
+        return '0.0.0-development';
+      }
+    },
+    {
+      name: 'description',
+      type: 'input',
+      message: 'Module description:\n'
+    },
+    {
+      name: 'repository',
+      type: 'input',
+      message: 'Repository URL:\n'
+    },
+    {
+      name: 'author',
+      type: 'input',
+      message: 'Module author:\n'
+    },
+    {
+      name: 'license',
+      type: 'input',
+      message: 'License:\n',
+      default() {
+        return 'MIT';
+      }
     }
-    // {
-    //   type: 'input',
-    //   name: 'type',
-    //   message: 'Choose a number?\n',
-    //   validate(input) {
-    //     spinner.setText('checking the name...');
-    //     spinner.start();
-
-    //     // Declare function as asynchronous, and save the done callback
-    //     const done = this.async();
-
-    //     // Do async stuff
-    //     setTimeout(() => {
-    //       spinner.stop();
-    //       if (typeof input !== 'number') {
-    //         // Pass the return value in the done callback
-    //         done('You need to provide a number');
-    //         return;
-    //       }
-    //       // Pass the return value in the done callback
-    //       done(null, true);
-    //     }, 3000);
-    //   }
-    // }
   ];
 
   inquirer.prompt(questions).then(done);
 }
 
-getAnswers(({ name, type }) => {
-  print(`${chalk.blue(name)} - ${chalk.yellow(type)}`);
-  if (type === 'node') {
-    spinner.setText('copying files...');
-    spinner.start();
-    copyModule('node-module-boilerplate', name, (err) => {
-      spinner.stop();
-      if (err) {
-        print(err);
-        process.exit(1);
-      }
+getAnswers((answers) => {
+  const { name } = answers;
+
+  spinner.setText('copying files...');
+  spinner.start();
+
+  copyModule(answers, next(() => {
+    const packagePath = getNewModuleBasePath(name);
+
+    editPackageJson(packagePath, {
+      name: answers.name,
+      version: answers.version,
+      description: answers.description,
+      repository: answers.repository,
+      author: answers.author,
+      license: answers.license,
+      keywords: []
+    }, next(() => {
       spinner.stop();
       print(chalk.green(`Files created in ${chalk.blue(`./${name}`)} directory.`));
+      print(chalk.green(`Type: cd ${name} && npm run setup`));
       process.exit();
-    });
-  }
+    }));
+  }));
 });
+
+function next(done) {
+  return (err, result) => {
+    if (err) {
+      spinner.stop();
+      print(err);
+      return process.exit(1);
+    }
+
+    return done(result);
+  };
+}
