@@ -15,7 +15,7 @@
     "inquirer": "^3.0.6",
     "jsonfile": "^3.0.0",
     "node-browser-module-boilerplate": "^1.0.0",
-    "node-module-boilerplate": "^0.8.0"
+    "node-module-boilerplate": "^0.9.0"
   },
   "keywords": [
     "modern",

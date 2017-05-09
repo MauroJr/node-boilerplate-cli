@@ -2632,9 +2632,9 @@ node-browser-module-boilerplate@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/node-browser-module-boilerplate/-/node-browser-module-boilerplate-1.0.0.tgz#1c4ac00467c2820847289627e49a4c5b63aa6b31"
 
-node-module-boilerplate@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/node-module-boilerplate/-/node-module-boilerplate-0.8.0.tgz#cb1ad63ae3e78b0fa06e44891f43f4a63ebd17f5"
+node-module-boilerplate@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/node-module-boilerplate/-/node-module-boilerplate-0.9.0.tgz#890cd9a6e6845ecbad1fa8e490228f53bde8d445"
 
 node-pre-gyp@^0.6.29:
   version "0.6.34"
@@ -3199,7 +3199,7 @@ request-promise@^4.1.1:
     request-promise-core "1.1.1"
     stealthy-require "^1.0.0"
 
-request@2.79.0:
+request@2.79.0, request@^2.74.0, request@^2.78.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
@@ -3224,7 +3224,7 @@ request@2.79.0:
     tunnel-agent "~0.4.1"
     uuid "^3.0.0"
 
-request@^2.74.0, request@^2.78.0, request@^2.81.0:
+request@^2.81.0:
   version "2.81.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
   dependencies:
