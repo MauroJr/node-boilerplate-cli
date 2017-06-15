@@ -9,7 +9,7 @@ import readTemplate from './readme-template';
 export function copyModule(opt = {}, done) {
   const moduleTypes = {
     node: 'node-module-boilerplate',
-    'node and browser': 'node-bprwser-module-boilerplate'
+    'node and browser': 'node-browser-module-boilerplate'
   };
   const fromPath = path.resolve(__dirname, '../../node_modules/', moduleTypes[opt.type]);
   const toPath = path.resolve(process.cwd(), opt.name);
