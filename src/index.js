@@ -33,7 +33,7 @@ function getAnswers(done) {
         }
         if (directoryExists(value)) {
           return chalk.red(`Already exists a directory ${chalk.blue(`"${value}"`)
-            } in your current folder ${chalk.blue(`"${getCurrentDirBaseName()}"`)}.`);
+          } in your current folder ${chalk.blue(`"${getCurrentDirBaseName()}"`)}.`);
         }
 
         return true;
@@ -104,12 +104,12 @@ getAnswers((answers) => {
     },
     next(() => {
       createReadme(packagePath, answers,
-      next(() => {
-        spinner.stop();
-        print(chalk.green(`Files created in ${chalk.blue(`./${name}`)} directory.`));
-        print(chalk.green(`Type: cd ${name} && npm run setup`));
-        process.exit();
-      }));
+        next(() => {
+          spinner.stop();
+          print(chalk.green(`Files created in ${chalk.blue(`./${name}`)} directory.`));
+          print(chalk.green(`Type: cd ${name} && npm run setup`));
+          process.exit();
+        }));
     }));
   }));
 });
