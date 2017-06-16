@@ -2639,9 +2639,9 @@ node-browser-module-boilerplate@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/node-browser-module-boilerplate/-/node-browser-module-boilerplate-1.0.0.tgz#1c4ac00467c2820847289627e49a4c5b63aa6b31"
 
-node-module-boilerplate@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/node-module-boilerplate/-/node-module-boilerplate-0.10.0.tgz#df6ef976c5f56a67c2f6c6bc20fa5c04200cdc76"
+node-module-boilerplate@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/node-module-boilerplate/-/node-module-boilerplate-0.11.0.tgz#6a21fa9d13a02591f243f0b93e0a78d948519686"
 
 node-pre-gyp@^0.6.36:
   version "0.6.36"
