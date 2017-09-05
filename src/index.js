@@ -93,24 +93,28 @@ getAnswers((answers) => {
   copyModule(answers, next(() => {
     const packagePath = getNewModuleBasePath(name);
 
-    editPackageJson(packagePath, {
-      name: answers.name,
-      version: answers.version,
-      description: answers.description,
-      repository: answers.repository,
-      author: answers.author,
-      license: answers.license,
-      keywords: []
-    },
-    next(() => {
-      createReadme(packagePath, answers,
-        next(() => {
-          spinner.stop();
-          print(chalk.green(`Files created in ${chalk.blue(`./${name}`)} directory.`));
-          print(chalk.green(`Type: cd ${name} && npm run setup`));
-          process.exit();
-        }));
-    }));
+    editPackageJson(
+      packagePath, {
+        name: answers.name,
+        version: answers.version,
+        description: answers.description,
+        repository: answers.repository,
+        author: answers.author,
+        license: answers.license,
+        keywords: []
+      },
+      next(() => {
+        createReadme(
+          packagePath, answers,
+          next(() => {
+            spinner.stop();
+            print(chalk.green(`Files created in ${chalk.blue(`./${name}`)} directory.`));
+            print(chalk.green(`Type: cd ${name} && npm run setup`));
+            process.exit();
+          })
+        );
+      })
+    );
   }));
 });
 

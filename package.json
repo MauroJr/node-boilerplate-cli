@@ -7,15 +7,15 @@
   "author": "Mauro Junior <mauropereirajr@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^2.0.1",
+    "chalk": "^2.1.0",
     "clear": "^0.0.1",
     "commander": "^2.11.0",
     "copy-dir": "^0.3.0",
     "figlet": "^1.2.0",
-    "inquirer": "^3.2.0",
+    "inquirer": "^3.2.3",
     "jsonfile": "^3.0.1",
     "node-browser-module-boilerplate": "^1.0.0",
-    "node-module-boilerplate": "^0.12.0"
+    "node-module-boilerplate": "^0.13.0"
   },
   "keywords": [
     "modern",
@@ -68,26 +68,26 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
-    "@types/node": "^8.0.14",
-    "babel-cli": "^6.24.1",
+    "@types/node": "^8.0.26",
+    "babel-cli": "^6.26.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.0",
-    "babel-register": "^6.24.1",
-    "chai": "^4.1.0",
-    "codecov": "^2.2.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "codecov": "^2.3.0",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
-    "eslint": "^4.3.0",
-    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
     "husky": "^0.14.3",
     "if-env": "^1.0.0",
-    "mocha": "^3.4.2",
+    "mocha": "^3.5.0",
     "npm-scripts-info": "^0.3.6",
-    "nyc": "^11.0.3",
+    "nyc": "^11.2.0",
     "rimraf": "^2.6.1",
-    "semantic-release": "^6.3.6",
-    "typescript": "^2.4.2"
+    "semantic-release": "^7.0.2",
+    "typescript": "^2.5.2"
   },
   "config": {
     "commitizen": {
